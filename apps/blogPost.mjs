@@ -1,12 +1,13 @@
 import { Router } from "express";
 import connectionPool from "../utils/db.mjs";
+import validatePost from "../middleware/validatePost.js";
 
 const blogPost = Router();
 
-blogPost.post("/", async (req, res) => {
+blogPost.post("/", [validatePost], async (req, res) => {
   const newPost = req.body;
 
-  if(!newPost.title || !newPost.image || !newPost.category_id || !newPost.content) {
+  if(!newPost.title || !newPost.image || !newPost.category_id || !newPost.content || !newPost.status_id || !newPost.description) {
     return res.status(400).json({ message: "Server could not create post because there are missing data from client" });
   }
   try {
@@ -55,7 +56,7 @@ blogPost.get("/:postId", async (req, res) => {
   }
 });
 
-blogPost.put("/:postId", async (req, res) => {
+blogPost.put("/:postId", [validatePost], async (req, res) => {
   const postId = req.params.postId;
   const updatedPost = req.body;
 
