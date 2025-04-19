@@ -13,8 +13,7 @@
   "type": "module",
   "dependencies": {
     "express": "^5.1.0",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "pg": "^8.14.1"
   }
-
-  
 }
