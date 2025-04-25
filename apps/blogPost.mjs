@@ -56,6 +56,7 @@ blogPost.get("/:postId", async (req, res) => {
   }
 });
 
+
 blogPost.put("/:postId", [validatePost], async (req, res) => {
   const postId = req.params.postId;
   const updatedPost = req.body;
