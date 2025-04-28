@@ -1,6 +1,7 @@
 import express from "express";
 import blogPost from "./apps/blogPost.mjs";
 import cors from "cors";
+import auth from "./apps/Auth.mjs";
 
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(cors({
 }));
 
 app.use("/posts", blogPost);
+app.use("/auth", auth);
 app.get("/test", (req, res) => {
     return res.json("Server API is working 🚀")
 });
