@@ -23,6 +23,7 @@ auth.post("/signup", async (req, res) => {
         id: authData.user.id,
         name,
         username,
+        password,
         email,
         created_at: new Date(),
       },
