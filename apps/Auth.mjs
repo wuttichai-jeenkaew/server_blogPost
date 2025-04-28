@@ -6,7 +6,7 @@ const auth = Router();
 
 auth.post("/signup", async (req, res) => {
     
-    const { name, username, email, password } = req.body;
+    const { name, username, email, password, role } = req.body;
 
   try {
     const { data: authData, error: authError } = await supabase.auth.signUp({
@@ -25,6 +25,7 @@ auth.post("/signup", async (req, res) => {
         username,
         password,
         email,
+        role,
         created_at: new Date(),
       },
     ]);
