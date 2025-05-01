@@ -65,7 +65,17 @@ auth.post("/login", async (req, res) => {
       return res.status(400).json({ error: userError.message });
     }
 
-    res.status(200).json({ user: userData });
+
+    const { data: sessionData } = await supabase.auth.getSession();
+
+    if (sessionData?.session) {
+      console.log("✅ Session loaded after login:", sessionData.session);
+      // สามารถเข้าถึง session ได้จากตรงนี้
+    } else {
+      console.log("❌ No session found after login.");
+    }
+
+    res.status(200).json({ user: userData, session: sessionData.session });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Internal Server Error" });
